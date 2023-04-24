@@ -14,6 +14,9 @@ import SwiftUI
 class SpeechRecognizer: ObservableObject {    
     @Published var transcript: String = ""
     
+    /** speech recognizer langunage choosing */
+    public var languange: String
+    
     /** An object that manages a graph of audio nodes, controls playback, and configures real-time rendering constraints. */
     private var audioEngine: AVAudioEngine?
     
@@ -108,9 +111,12 @@ class SpeechRecognizer: ObservableObject {
     /**
     Initializes a new speech recognizer.
      */
-    init() {
+    init(language: String) {
+        
+        self.languange = language
+        
         /** Initialize Speech Framework from Apple SDK */
-        recognizer = SFSpeechRecognizer(locale: Locale(identifier: "id"))!
+        recognizer = SFSpeechRecognizer(locale: Locale(identifier: self.languange))!
         
         Task(priority: .background) {
             do {
@@ -127,6 +133,10 @@ class SpeechRecognizer: ObservableObject {
                 speakError(error)
             }
         }
+    }
+    
+    func changeLanguage(newLanguage: String){
+        self.languange = newLanguage
     }
     
     deinit {

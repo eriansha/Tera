@@ -8,29 +8,44 @@
 import SwiftUI
 
 struct RecordingView: View {
-    @StateObject var speechRecognizer = SpeechRecognizer()
+    @StateObject var speechRecognizer = SpeechRecognizer(language: "id")
     @State private var isRecording: Bool = false
+    @State var languageChange = "id"
+    let languages = ["id","en"]
+    
     
     var body: some View {
-        VStack {
-            Text(speechRecognizer.transcript)
-                .padding()
+        HStack{
+            Picker(selection : $languageChange ,label:Text("select language")){
+                ForEach(languages, id: \.self)
+                { lang in Text(lang).tag(lang)}
+            }
+            .onChange(of: languageChange) { value in
+                speechRecognizer.changeLanguage(newLanguage: value)
+            }
             
-            Button(action: {
-                if !isRecording {
-                    speechRecognizer.transcribe()
-                } else {
-                    speechRecognizer.stopTranscribing()
-                }
-                
-                isRecording.toggle()
-            }) {
-                Text(isRecording ? "Stop" : "Record")
-                    .font(.title)
-                    .foregroundColor(.white)
+            
+            VStack {
+                Text(speechRecognizer.transcript)
                     .padding()
-                    .background(isRecording ? Color.red : Color.blue)
-                    .cornerRadius(10)
+                
+                Button(action: {
+                    
+                    if !isRecording {
+                        speechRecognizer.transcribe()
+                    } else {
+                        speechRecognizer.stopTranscribing()
+                    }
+                    
+                    isRecording.toggle()
+                }) {
+                    Text(isRecording ? "Stop" : "Record")
+                        .font(.title)
+                        .foregroundColor(.white)
+                        .padding()
+                        .background(isRecording ? Color.red : Color.blue)
+                        .cornerRadius(10)
+                }
             }
         }
     }
