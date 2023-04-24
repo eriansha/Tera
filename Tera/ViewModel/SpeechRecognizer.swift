@@ -11,8 +11,11 @@ import Speech
 import SwiftUI
 
 /** Speech recognizer abstraction made by Apple's Speech Framework */
-class SpeechRecognizer: ObservableObject {    
+class SpeechRecognizer: ObservableObject {
     @Published var transcript: String = ""
+    
+    /** speech recognizer langunage choosing */
+    public var language: String
     
     /** An object that manages a graph of audio nodes, controls playback, and configures real-time rendering constraints. */
     private var audioEngine: AVAudioEngine?
@@ -105,12 +108,16 @@ class SpeechRecognizer: ObservableObject {
         transcript = message
     }
     
+    
     /**
     Initializes a new speech recognizer.
      */
-    init() {
+    init(language: String = "id") {
+        
+        self.language = language
+        
         /** Initialize Speech Framework from Apple SDK */
-        recognizer = SFSpeechRecognizer(locale: Locale(identifier: "id"))!
+        recognizer = SFSpeechRecognizer(locale: Locale(identifier: self.language))!
         
         Task(priority: .background) {
             do {
@@ -128,6 +135,8 @@ class SpeechRecognizer: ObservableObject {
             }
         }
     }
+    
+    
     
     deinit {
         reset()
