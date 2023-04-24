@@ -12,6 +12,11 @@
 		2C69E83329EE597200429ED2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C69E83229EE597200429ED2 /* Assets.xcassets */; };
 		2C69E83629EE597200429ED2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C69E83529EE597200429ED2 /* Preview Assets.xcassets */; };
 		2C7BBD8529EFA1B20049497B /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7BBD8429EFA1B20049497B /* ButtonView.swift */; };
+		2CF8118829F62FB00015CDCC /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF8118729F62FB00015CDCC /* SpeechRecognizer.swift */; };
+		2CF8118B29F631990015CDCC /* hasAuthorizationToRecognize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF8118A29F631990015CDCC /* hasAuthorizationToRecognize.swift */; };
+		2CF8118D29F631C80015CDCC /* hasPermissionToRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF8118C29F631C80015CDCC /* hasPermissionToRecord.swift */; };
+		2CF8118F29F634970015CDCC /* RecognizerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF8118E29F634970015CDCC /* RecognizerError.swift */; };
+		2CF8119229F63F180015CDCC /* RecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF8119129F63F180015CDCC /* RecordingView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +26,11 @@
 		2C69E83229EE597200429ED2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C69E83529EE597200429ED2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2C7BBD8429EFA1B20049497B /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		2CF8118729F62FB00015CDCC /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
+		2CF8118A29F631990015CDCC /* hasAuthorizationToRecognize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hasAuthorizationToRecognize.swift; sourceTree = "<group>"; };
+		2CF8118C29F631C80015CDCC /* hasPermissionToRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hasPermissionToRecord.swift; sourceTree = "<group>"; };
+		2CF8118E29F634970015CDCC /* RecognizerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizerError.swift; sourceTree = "<group>"; };
+		2CF8119129F63F180015CDCC /* RecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +63,8 @@
 		2C69E82D29EE597100429ED2 /* Tera */ = {
 			isa = PBXGroup;
 			children = (
+				2CF8119029F63F080015CDCC /* View */,
+				2CF8118629F62F9D0015CDCC /* ViewModel */,
 				2C69E82E29EE597100429ED2 /* TeraApp.swift */,
 				2C69E83029EE597100429ED2 /* ContentView.swift */,
 				2C7BBD8429EFA1B20049497B /* ButtonView.swift */,
@@ -68,6 +80,33 @@
 				2C69E83529EE597200429ED2 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		2CF8118629F62F9D0015CDCC /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2CF8118929F631840015CDCC /* Extension */,
+				2CF8118729F62FB00015CDCC /* SpeechRecognizer.swift */,
+				2CF8118E29F634970015CDCC /* RecognizerError.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2CF8118929F631840015CDCC /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				2CF8118A29F631990015CDCC /* hasAuthorizationToRecognize.swift */,
+				2CF8118C29F631C80015CDCC /* hasPermissionToRecord.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		2CF8119029F63F080015CDCC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				2CF8119129F63F180015CDCC /* RecordingView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -141,8 +180,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C69E83129EE597100429ED2 /* ContentView.swift in Sources */,
+				2CF8118D29F631C80015CDCC /* hasPermissionToRecord.swift in Sources */,
+				2CF8118829F62FB00015CDCC /* SpeechRecognizer.swift in Sources */,
 				2C7BBD8529EFA1B20049497B /* ButtonView.swift in Sources */,
 				2C69E82F29EE597100429ED2 /* TeraApp.swift in Sources */,
+				2CF8118F29F634970015CDCC /* RecognizerError.swift in Sources */,
+				2CF8119229F63F180015CDCC /* RecordingView.swift in Sources */,
+				2CF8118B29F631990015CDCC /* hasAuthorizationToRecognize.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -281,6 +325,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -312,6 +357,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
