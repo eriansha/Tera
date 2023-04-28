@@ -46,6 +46,7 @@ struct TextViewer: View {
                     .frame(width: 30, height: 29)
                     .foregroundColor(.white)
                     .font(.system(size: 24))
+                    .fontWeight(.bold)
                     .padding(.horizontal,25)
                     .padding(.vertical,25)
             }
