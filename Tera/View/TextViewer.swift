@@ -9,7 +9,6 @@ import SwiftUI
 
 struct TextViewer: View {
     @ObservedObject var speechRecognizer: SpeechRecognizer
-    let gradient = Gradient(colors: [Color.black.opacity(0), Color.black.opacity(0.2)])
     
     var body: some View {
         
@@ -19,8 +18,6 @@ struct TextViewer: View {
                 Image("TextViewerBG")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-                
-                LinearGradient(gradient: gradient, startPoint: .top, endPoint: .bottom)
 
                 ScrollView{
 
