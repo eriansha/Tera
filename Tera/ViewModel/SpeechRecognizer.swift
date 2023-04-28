@@ -40,13 +40,11 @@ class SpeechRecognizer: ObservableObject {
     
     /** reset speech recognizer */
     private func reset() {
-        func reset() {
-            task?.cancel()
-            audioEngine?.stop()
-            audioEngine = nil
-            request = nil
-            task = nil
-        }
+        task?.cancel()
+        audioEngine?.stop()
+        audioEngine = nil
+        request = nil
+        task = nil
     }
     
     /** Prepare engine to record */
