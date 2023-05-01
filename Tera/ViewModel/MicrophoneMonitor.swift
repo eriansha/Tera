@@ -19,10 +19,12 @@ class MicrophoneMonitor: ObservableObject {
     
     // 2
     @Published public var soundSamples: [Float]
+    @Published public var soundLevel: Float
     
     init(numberOfSamples: Int) {
         self.numberOfSamples = numberOfSamples // In production check this is > 0.
         self.soundSamples = [Float](repeating: .zero, count: numberOfSamples)
+        self.soundLevel = .zero
         self.currentSample = 0
         
         // 3
@@ -64,6 +66,8 @@ class MicrophoneMonitor: ObservableObject {
             self.audioRecorder.updateMeters()
             self.soundSamples[self.currentSample] = self.audioRecorder.averagePower(forChannel: 0)
             self.currentSample = (self.currentSample + 1) % self.numberOfSamples
+            
+            self.soundLevel = self.audioRecorder.averagePower(forChannel: 0)
         })
     }
     

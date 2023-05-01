@@ -7,7 +7,8 @@
 
 import SwiftUI
 
-let numberOfSamples = 20
+let numberOfSamples = 37
+let sizeList: [CGFloat] = [1,2,3,0,5,3,4,0,3,3,2,3,5,8,7,6,7,4,0,3,3,2,3,4,8,7,6,7,5,3,0,4,5,0,3,2,1]
 
 struct SoundWaveView: View {
     // 1
@@ -15,18 +16,23 @@ struct SoundWaveView: View {
     
     // 2
     private func normalizeSoundLevel(level: Float) -> CGFloat {
-        let level = max(0.2, CGFloat(level) + 50) / 2 // between 0.1 and 25
+        let level = (max(10, CGFloat(level) + 50) / 2) - 4.9 // between 0.1 and 25
         
-        return CGFloat(level * (300 / 25)) // scaled to max at 300 (our height of our bar)
+//        return CGFloat(level * (300 / 25)) // scaled to max at 300 (our height of our bar)
+        return CGFloat(level)
     }
     
     var body: some View {
         VStack {
              // 3
             HStack(spacing: 4) {
-                 // 4
-                ForEach(mic.soundSamples, id: \.self) { level in
-                    BarView(value: self.normalizeSoundLevel(level: level))
+                // 4
+                //                ForEach(mic.soundSamples, id: \.self) { level in
+                //                    BarView(value: self.normalizeSoundLevel(level: level))
+                //                }
+                
+                ForEach(sizeList, id: \.self) { level in
+                    BarView(value: self.normalizeSoundLevel(level: mic.soundLevel), size: level)
                 }
             }
         }
@@ -36,6 +42,8 @@ struct SoundWaveView: View {
 struct BarView: View {
    // 1
     var value: CGFloat
+    
+    var size: CGFloat
 
     var body: some View {
         ZStack {
@@ -43,7 +51,10 @@ struct BarView: View {
             RoundedRectangle(cornerRadius: 5)
                 .fill(Color.purple)
                 // 3
-                .frame(width: (UIScreen.main.bounds.width - CGFloat(numberOfSamples) * 4) / CGFloat(numberOfSamples), height: value)
+                .frame(
+                    width: (UIScreen.main.bounds.width - CGFloat(numberOfSamples) * 4) / CGFloat(numberOfSamples),
+                    height: CGFloat(value * ((50 + size * 25) / 25))
+                )
         }
     }
 }
