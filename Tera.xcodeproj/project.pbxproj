@@ -17,6 +17,8 @@
 		2CF8118D29F631C80015CDCC /* hasPermissionToRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF8118C29F631C80015CDCC /* hasPermissionToRecord.swift */; };
 		2CF8118F29F634970015CDCC /* RecognizerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF8118E29F634970015CDCC /* RecognizerError.swift */; };
 		2CF8119229F63F180015CDCC /* RecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF8119129F63F180015CDCC /* RecordingView.swift */; };
+		9C754D1429FF72960003A01C /* SoundWaveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C754D1329FF72960003A01C /* SoundWaveView.swift */; };
+		9C754D1629FF75CB0003A01C /* MicrophoneMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C754D1529FF75CB0003A01C /* MicrophoneMonitor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +33,8 @@
 		2CF8118C29F631C80015CDCC /* hasPermissionToRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hasPermissionToRecord.swift; sourceTree = "<group>"; };
 		2CF8118E29F634970015CDCC /* RecognizerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizerError.swift; sourceTree = "<group>"; };
 		2CF8119129F63F180015CDCC /* RecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingView.swift; sourceTree = "<group>"; };
+		9C754D1329FF72960003A01C /* SoundWaveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundWaveView.swift; sourceTree = "<group>"; };
+		9C754D1529FF75CB0003A01C /* MicrophoneMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MicrophoneMonitor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -87,6 +91,7 @@
 			children = (
 				2CF8118929F631840015CDCC /* Extension */,
 				2CF8118729F62FB00015CDCC /* SpeechRecognizer.swift */,
+				9C754D1529FF75CB0003A01C /* MicrophoneMonitor.swift */,
 				2CF8118E29F634970015CDCC /* RecognizerError.swift */,
 			);
 			path = ViewModel;
@@ -105,6 +110,7 @@
 			isa = PBXGroup;
 			children = (
 				2CF8119129F63F180015CDCC /* RecordingView.swift */,
+				9C754D1329FF72960003A01C /* SoundWaveView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -186,6 +192,8 @@
 				2C69E82F29EE597100429ED2 /* TeraApp.swift in Sources */,
 				2CF8118F29F634970015CDCC /* RecognizerError.swift in Sources */,
 				2CF8119229F63F180015CDCC /* RecordingView.swift in Sources */,
+				9C754D1429FF72960003A01C /* SoundWaveView.swift in Sources */,
+				9C754D1629FF75CB0003A01C /* MicrophoneMonitor.swift in Sources */,
 				2CF8118B29F631990015CDCC /* hasAuthorizationToRecognize.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

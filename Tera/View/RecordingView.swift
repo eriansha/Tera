@@ -32,6 +32,13 @@ struct RecordingView: View {
                     .background(isRecording ? Color.red : Color.blue)
                     .cornerRadius(10)
             }
+            
+            Spacer().frame(height: 40)
+            
+            if isRecording {
+                SoundWaveView()
+            }
+            
         }
     }
 }
