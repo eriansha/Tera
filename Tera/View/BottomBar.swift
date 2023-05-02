@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct BottomBar: View {
+    public var mic: MicrophoneMonitor
     public var speechRecognizer: SpeechRecognizer
     
     enum Language: String, CaseIterable {
@@ -15,7 +16,7 @@ struct BottomBar: View {
         case en = "en"
     }
     
-    @State private var isRecording: Bool = false
+    @Binding var isRecording: Bool
     @State private var showingOptions = false
     @State private var selectionLanguage: String = "en"
     
@@ -44,9 +45,11 @@ struct BottomBar: View {
                     if isRecording {
                         isRecording = false
                         speechRecognizer.stopTranscribing()
+                        mic.stopMonitoring()
                     } else {
                         isRecording = true
                         speechRecognizer.transcribe()
+                        mic.startMonitoring()
                     }
                     
                 }) {
