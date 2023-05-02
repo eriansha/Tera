@@ -67,7 +67,7 @@ class MicrophoneMonitor: ObservableObject {
             self.soundSamples[self.currentSample] = self.audioRecorder.averagePower(forChannel: 0)
             self.currentSample = (self.currentSample + 1) % self.numberOfSamples
             
-            self.soundLevel = self.audioRecorder.averagePower(forChannel: 0)
+//            self.soundLevel = self.audioRecorder.averagePower(forChannel: 0)
         })
     }
     

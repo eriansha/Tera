@@ -16,7 +16,7 @@ struct SoundWaveView: View {
     
     // 2
     private func normalizeSoundLevel(level: Float) -> CGFloat {
-        let level = (max(10, CGFloat(level) + 50) / 2) - 4.9 // between 0.1 and 25
+        let level = (max(30, CGFloat(level) + 50) / 2) - 14.9 // between 0.1 and 25
         
 //        return CGFloat(level * (300 / 25)) // scaled to max at 300 (our height of our bar)
         return CGFloat(level)
