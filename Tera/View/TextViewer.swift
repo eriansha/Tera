@@ -18,20 +18,37 @@ struct TextViewer: View {
                 Image("TextViewerBG")
                     .resizable()
                     .aspectRatio(contentMode: .fill)
-
-                ScrollView{
-
-//                    Text("Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.")
-                    Text(speechRecognizer.transcript)
-                        .font(.system(size: 36))
-                        .fontWeight(.regular)
-                        .foregroundColor(.white)
-                        .padding(25)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-
+                
+                VStack {
+                    ScrollView{
+                        
+                            Text(speechRecognizer.transcript)
+                            .font(.system(size: 36))
+                            .fontWeight(.regular)
+                            .foregroundColor(.white)
+                            .padding(.horizontal, 25)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                        
+                    }
+                    .frame(height: 370)
+                    
+                    HStack {
+                        Spacer()
+                        
+                        Button(action: {
+                            
+                        }) {
+                            Image(systemName: "viewfinder")
+                                .frame(width: 30, height: 29)
+                                .foregroundColor(.white)
+                                .font(.system(size: 24))
+                                .fontWeight(.bold)
+                                .padding(.horizontal,17)
+                                
+                        }
+                    }.padding(.bottom, -20)
+                    
                 }
-                .padding(.bottom, 60)
-                .padding(.top, 10)
                 
             }
             .frame(width: 358, height: 470)
@@ -40,19 +57,6 @@ struct TextViewer: View {
                 color: Color.black.opacity(0.2),
                 radius: 10
             )
-            
-            //Button FullScreen
-            Button(action: {
-
-            }) {
-                Image(systemName: "viewfinder")
-                    .frame(width: 30, height: 29)
-                    .foregroundColor(.white)
-                    .font(.system(size: 24))
-                    .fontWeight(.bold)
-                    .padding(.horizontal,25)
-                    .padding(.vertical,25)
-            }
         }
     }
 }
