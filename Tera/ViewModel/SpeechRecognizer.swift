@@ -108,7 +108,6 @@ class SpeechRecognizer: ObservableObject {
         transcript = message
     }
     
-    
     /**
     Initializes a new speech recognizer.
      */
