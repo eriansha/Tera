@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct RecordingView: View {
-    @StateObject var speechModel = SpeechModel()
+    // @StateObject var speechModel = SpeechModel()
+    @StateObject var speechRecognizer = SpeechRecognizer()
     @State private var isRecording: Bool = false
     @State var languageChange = "id"
     let languages = ["id","en"]
@@ -21,24 +22,20 @@ struct RecordingView: View {
                 { lang in Text(lang).tag(lang)}
             }
             .onChange(of: languageChange) { value in
-                // speechRecognizer.language = value
-//                let newObj = SpeechRecognizer(language: value)
-//                speechRecognizer = newObj
-                speechModel.changeLangunage(identifier: value)
+                speechRecognizer.changeLanguage(identifier: value)
             }
             
-            
             VStack {
-                Text(speechModel.speechRecognizer.transcript)
+                Text(speechRecognizer.transcript)
                     .padding()
                 Text(languageChange)
                 Button(action: {
                     
                     if !isRecording {
-                        speechModel.speechRecognizer.transcribe()
+                        speechRecognizer.transcribe()
                         
                     } else {
-                        speechModel.speechRecognizer.stopTranscribing()
+                        speechRecognizer.stopTranscribing()
                     }
                     
                     isRecording.toggle()

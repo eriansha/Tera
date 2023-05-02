@@ -17,7 +17,6 @@
 		2CF8118D29F631C80015CDCC /* hasPermissionToRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF8118C29F631C80015CDCC /* hasPermissionToRecord.swift */; };
 		2CF8118F29F634970015CDCC /* RecognizerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF8118E29F634970015CDCC /* RecognizerError.swift */; };
 		2CF8119229F63F180015CDCC /* RecordingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF8119129F63F180015CDCC /* RecordingView.swift */; };
-		4D433CB72A00C43C0060C281 /* SpeechModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D433CB62A00C43C0060C281 /* SpeechModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,7 +31,6 @@
 		2CF8118C29F631C80015CDCC /* hasPermissionToRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hasPermissionToRecord.swift; sourceTree = "<group>"; };
 		2CF8118E29F634970015CDCC /* RecognizerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecognizerError.swift; sourceTree = "<group>"; };
 		2CF8119129F63F180015CDCC /* RecordingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordingView.swift; sourceTree = "<group>"; };
-		4D433CB62A00C43C0060C281 /* SpeechModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,7 +63,6 @@
 		2C69E82D29EE597100429ED2 /* Tera */ = {
 			isa = PBXGroup;
 			children = (
-				4D433CB52A00C4190060C281 /* Model */,
 				2CF8119029F63F080015CDCC /* View */,
 				2CF8118629F62F9D0015CDCC /* ViewModel */,
 				2C69E82E29EE597100429ED2 /* TeraApp.swift */,
@@ -110,14 +107,6 @@
 				2CF8119129F63F180015CDCC /* RecordingView.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		4D433CB52A00C4190060C281 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				4D433CB62A00C43C0060C281 /* SpeechModel.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,7 +183,6 @@
 				2CF8118D29F631C80015CDCC /* hasPermissionToRecord.swift in Sources */,
 				2CF8118829F62FB00015CDCC /* SpeechRecognizer.swift in Sources */,
 				2C7BBD8529EFA1B20049497B /* ButtonView.swift in Sources */,
-				4D433CB72A00C43C0060C281 /* SpeechModel.swift in Sources */,
 				2C69E82F29EE597100429ED2 /* TeraApp.swift in Sources */,
 				2CF8118F29F634970015CDCC /* RecognizerError.swift in Sources */,
 				2CF8119229F63F180015CDCC /* RecordingView.swift in Sources */,

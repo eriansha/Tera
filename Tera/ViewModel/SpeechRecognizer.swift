@@ -27,7 +27,7 @@ class SpeechRecognizer: ObservableObject {
     private var task: SFSpeechRecognitionTask?
     
     /** Speech framework recognition service */
-    private let recognizer: SFSpeechRecognizer?
+    private var recognizer: SFSpeechRecognizer?
     
     /** Parse Speech Recognizer error into human-readable format */
     private func speakError(_ error: Error) {
@@ -43,13 +43,11 @@ class SpeechRecognizer: ObservableObject {
     
     /** reset speech recognizer */
     private func reset() {
-        func reset() {
-            task?.cancel()
-            audioEngine?.stop()
-            audioEngine = nil
-            request = nil
-            task = nil
-        }
+        task?.cancel()
+        audioEngine?.stop()
+        audioEngine = nil
+        request = nil
+        task = nil
     }
     
     /** Prepare engine to record */
@@ -139,6 +137,13 @@ class SpeechRecognizer: ObservableObject {
     
     deinit {
         reset()
+    }
+    
+    func changeLanguage(identifier: String) {
+        reset()
+        
+        self.language = identifier
+        recognizer = SFSpeechRecognizer(locale: Locale(identifier: self.language))!
     }
     
     /** Create a recognition task for the speech recognition session. */
