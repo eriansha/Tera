@@ -12,33 +12,16 @@ struct RecordingView: View {
     @State private var isRecording: Bool = false
     
     var body: some View {
-        VStack {
-            Text(speechRecognizer.transcript)
-                .padding()
-            
-            Button(action: {
-                if !isRecording {
-                    speechRecognizer.transcribe()
-                } else {
-                    speechRecognizer.stopTranscribing()
-                }
-                
-                isRecording.toggle()
-            }) {
-                Text(isRecording ? "Stop" : "Record")
-                    .font(.title)
-                    .foregroundColor(.white)
-                    .padding()
-                    .background(isRecording ? Color.red : Color.blue)
-                    .cornerRadius(10)
-            }
-            
-            Spacer().frame(height: 40)
+        VStack {            
+            TextViewer(speechRecognizer: speechRecognizer).padding()
             
             if isRecording {
                 SoundWaveView()
             }
             
+            Divider().frame(width: 300).padding(.vertical,20)
+            
+            BottomBar(speechRecognizer: speechRecognizer)
         }
     }
 }
