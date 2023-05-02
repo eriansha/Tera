@@ -31,8 +31,8 @@ struct SoundWaveView: View {
                 //                    BarView(value: self.normalizeSoundLevel(level: level))
                 //                }
                 
-                ForEach(sizeList, id: \.self) { level in
-                    BarView(value: self.normalizeSoundLevel(level: mic.soundLevel), size: level)
+                ForEach(0..<sizeList.count, id: \.self) { id in
+                    BarView(value: self.normalizeSoundLevel(level: mic.soundSamples[id]), size: sizeList[id])
                 }
             }
         }

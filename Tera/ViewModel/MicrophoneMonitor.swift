@@ -61,7 +61,7 @@ class MicrophoneMonitor: ObservableObject {
     private func startMonitoring() {
         audioRecorder.isMeteringEnabled = true
         audioRecorder.record()
-        timer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { (timer) in
+        timer = Timer.scheduledTimer(withTimeInterval: 0.005, repeats: true, block: { (timer) in
             // 7
             self.audioRecorder.updateMeters()
             self.soundSamples[self.currentSample] = self.audioRecorder.averagePower(forChannel: 0)
