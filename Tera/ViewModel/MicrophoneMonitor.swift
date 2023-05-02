@@ -51,14 +51,14 @@ class MicrophoneMonitor: ObservableObject {
             audioRecorder = try AVAudioRecorder(url: url, settings: recorderSettings)
             try audioSession.setCategory(.playAndRecord, mode: .default, options: [])
             
-            startMonitoring()
+//            startMonitoring()
         } catch {
             fatalError(error.localizedDescription)
         }
     }
     
     // 6
-    private func startMonitoring() {
+    public func startMonitoring() {
         audioRecorder.isMeteringEnabled = true
         audioRecorder.record()
         timer = Timer.scheduledTimer(withTimeInterval: 0.005, repeats: true, block: { (timer) in
@@ -67,8 +67,12 @@ class MicrophoneMonitor: ObservableObject {
             self.soundSamples[self.currentSample] = self.audioRecorder.averagePower(forChannel: 0)
             self.currentSample = (self.currentSample + 1) % self.numberOfSamples
             
-//            self.soundLevel = self.audioRecorder.averagePower(forChannel: 0)
         })
+    }
+    
+    public func stopMonitoring() {
+        timer?.invalidate()
+        audioRecorder.stop()
     }
     
     // 8
@@ -76,4 +80,6 @@ class MicrophoneMonitor: ObservableObject {
         timer?.invalidate()
         audioRecorder.stop()
     }
+    
+    
 }

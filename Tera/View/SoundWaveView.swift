@@ -12,13 +12,13 @@ let sizeList: [CGFloat] = [1,2,3,0,5,3,4,0,3,3,2,3,5,8,7,6,7,4,0,3,3,2,3,4,8,7,6
 
 struct SoundWaveView: View {
     // 1
-    @ObservedObject private var mic = MicrophoneMonitor(numberOfSamples: numberOfSamples)
+    @ObservedObject public var mic: MicrophoneMonitor
+    @Binding public var isRecording: Bool
     
     // 2
     private func normalizeSoundLevel(level: Float) -> CGFloat {
-        let level = (max(30, CGFloat(level) + 50) / 2) - 14.9 // between 0.1 and 25
-        
-//        return CGFloat(level * (300 / 25)) // scaled to max at 300 (our height of our bar)
+        let level = (max(30, CGFloat(level) + 50) / 2) - 14.9 
+
         return CGFloat(level)
     }
     
@@ -26,13 +26,14 @@ struct SoundWaveView: View {
         VStack {
              // 3
             HStack(spacing: 4) {
-                // 4
-                //                ForEach(mic.soundSamples, id: \.self) { level in
-                //                    BarView(value: self.normalizeSoundLevel(level: level))
-                //                }
-                
-                ForEach(0..<sizeList.count, id: \.self) { id in
-                    BarView(value: self.normalizeSoundLevel(level: mic.soundSamples[id]), size: sizeList[id])
+                if isRecording {
+                    ForEach(0..<sizeList.count, id: \.self) { id in
+                        BarView(value: self.normalizeSoundLevel(level: mic.soundSamples[id]), size: sizeList[id])
+                    }
+                } else {
+                    ForEach(0..<sizeList.count, id: \.self) { id in
+                        BarView(value: 0.1, size: sizeList[id])
+                    }
                 }
             }
         }
@@ -51,6 +52,7 @@ struct BarView: View {
             RoundedRectangle(cornerRadius: 5)
                 .fill(Color.purple)
                 // 3
+                .animation(Animation.easeIn(duration: 0.05), value: value)
                 .frame(
                     width: (UIScreen.main.bounds.width - CGFloat(numberOfSamples) * 4) / CGFloat(numberOfSamples),
                     height: CGFloat(value * ((50 + size * 25) / 25))
@@ -61,6 +63,6 @@ struct BarView: View {
 
 struct SoundWaveView_Previews: PreviewProvider {
     static var previews: some View {
-        SoundWaveView()
+        SoundWaveView(mic: MicrophoneMonitor(numberOfSamples: 37), isRecording: .constant(true))
     }
 }

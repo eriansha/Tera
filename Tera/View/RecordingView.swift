@@ -9,19 +9,18 @@ import SwiftUI
 
 struct RecordingView: View {
     @StateObject var speechRecognizer = SpeechRecognizer()
-    @State private var isRecording: Bool = false
+    @StateObject var mic = MicrophoneMonitor(numberOfSamples: 37)
+    @State var isRecording: Bool = false
     
     var body: some View {
-        VStack {            
+        VStack {
             TextViewer(speechRecognizer: speechRecognizer).padding()
+        
+            SoundWaveView(mic: mic, isRecording: $isRecording)
+                .frame(height: 100)
+                .padding(.horizontal, 100)
             
-            if isRecording {
-                SoundWaveView()
-            }
-            
-            Divider().frame(width: 300).padding(.vertical,20)
-            
-            BottomBar(speechRecognizer: speechRecognizer)
+            BottomBar(mic: mic, speechRecognizer: speechRecognizer, isRecording: $isRecording)
         }
     }
 }
