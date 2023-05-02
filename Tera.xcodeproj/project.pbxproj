@@ -10,6 +10,7 @@
 		05A01D6429FA42AD00333C7F /* BottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A01D6329FA42AD00333C7F /* BottomBar.swift */; };
 		05A01D7229FA9BAD00333C7F /* TextViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A01D7129FA9BAD00333C7F /* TextViewer.swift */; };
 		05A01D7429FA9C8500333C7F /* DummyWave.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A01D7329FA9C8500333C7F /* DummyWave.swift */; };
+		05A01DAC2A00AF8E00333C7F /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A01DAB2A00AF8E00333C7F /* Constant.swift */; };
 		2C69E82F29EE597100429ED2 /* TeraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C69E82E29EE597100429ED2 /* TeraApp.swift */; };
 		2C69E83129EE597100429ED2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C69E83029EE597100429ED2 /* ContentView.swift */; };
 		2C69E83329EE597200429ED2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C69E83229EE597200429ED2 /* Assets.xcassets */; };
@@ -26,6 +27,7 @@
 		05A01D6329FA42AD00333C7F /* BottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBar.swift; sourceTree = "<group>"; };
 		05A01D7129FA9BAD00333C7F /* TextViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewer.swift; sourceTree = "<group>"; };
 		05A01D7329FA9C8500333C7F /* DummyWave.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DummyWave.swift; sourceTree = "<group>"; };
+		05A01DAB2A00AF8E00333C7F /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		2C69E82B29EE597100429ED2 /* Tera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C69E82E29EE597100429ED2 /* TeraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeraApp.swift; sourceTree = "<group>"; };
 		2C69E83029EE597100429ED2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				2CF8118929F631840015CDCC /* Extension */,
 				2CF8118729F62FB00015CDCC /* SpeechRecognizer.swift */,
 				2CF8118E29F634970015CDCC /* RecognizerError.swift */,
+				05A01DAB2A00AF8E00333C7F /* Constant.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -199,6 +202,7 @@
 				2CF8118F29F634970015CDCC /* RecognizerError.swift in Sources */,
 				2CF8119229F63F180015CDCC /* RecordingView.swift in Sources */,
 				2CF8118B29F631990015CDCC /* hasAuthorizationToRecognize.swift in Sources */,
+				05A01DAC2A00AF8E00333C7F /* Constant.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
