@@ -339,7 +339,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Tera/Preview Content\"";
-				DEVELOPMENT_TEAM = 45ZWLX2CYQ;
+				DEVELOPMENT_TEAM = KGMG9ZB867;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Audio is recorded to transcribe the conversation.";

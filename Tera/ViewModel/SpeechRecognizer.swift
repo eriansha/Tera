@@ -1,18 +1,14 @@
-//
-//  SpeechRecognizer.swift
-//  Tera
-//
-//  Created by Ivan on 24/04/23.
-//
-
 import Foundation
 import AVFoundation
 import Speech
 import SwiftUI
 
 /** Speech recognizer abstraction made by Apple's Speech Framework */
-class SpeechRecognizer: ObservableObject {    
+class SpeechRecognizer: ObservableObject {
     @Published var transcript: String = ""
+    
+    /** speech recognizer langunage choosing */
+    public var language: String
     
     /** An object that manages a graph of audio nodes, controls playback, and configures real-time rendering constraints. */
     private var audioEngine: AVAudioEngine?
@@ -24,7 +20,7 @@ class SpeechRecognizer: ObservableObject {
     private var task: SFSpeechRecognitionTask?
     
     /** Speech framework recognition service */
-    private let recognizer: SFSpeechRecognizer?
+    private var recognizer: SFSpeechRecognizer?
     
     /** Parse Speech Recognizer error into human-readable format */
     private func speakError(_ error: Error) {
@@ -106,9 +102,12 @@ class SpeechRecognizer: ObservableObject {
     /**
     Initializes a new speech recognizer.
      */
-    init() {
+    init(language: String = "id") {
+        
+        self.language = language
+        
         /** Initialize Speech Framework from Apple SDK */
-        recognizer = SFSpeechRecognizer(locale: Locale(identifier: "id"))!
+        recognizer = SFSpeechRecognizer(locale: Locale(identifier: self.language))!
         
         Task(priority: .background) {
             do {
@@ -127,8 +126,17 @@ class SpeechRecognizer: ObservableObject {
         }
     }
     
+    
+    
     deinit {
         reset()
+    }
+    
+    func changeLanguage(identifier: String) {
+        reset()
+        
+        self.language = identifier
+        recognizer = SFSpeechRecognizer(locale: Locale(identifier: self.language))!
     }
     
     /** Create a recognition task for the speech recognition session. */
