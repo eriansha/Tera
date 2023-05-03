@@ -55,7 +55,7 @@ struct BarView: View {
         ZStack {
            // 2
             RoundedRectangle(cornerRadius: 5)
-                .fill(Color.purple)
+                .fill(Color.accentColor)
                 // 3
                 .animation(Animation.easeIn(duration: 0.05), value: value)
                 .frame(
