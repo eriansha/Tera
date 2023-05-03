@@ -39,7 +39,7 @@ struct BottomBar: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 30, height:30).foregroundColor(.accentColor)
-                }.confirmationDialog("Select Language", isPresented: $showingOptions, titleVisibility: .visible) {
+                }.confirmationDialog("Select language", isPresented: $showingOptions, titleVisibility: .visible) {
                     ForEach(Language.allCases, id: \.self) { lang in
                         Button(lang.getLabel()) {
                             selectionLanguage = lang.rawValue

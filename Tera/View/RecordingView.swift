@@ -60,7 +60,7 @@ struct RecordingView: View {
                 speechRecognizer: speechRecognizer,
                 isRecording: $isRecording,
                 isPaused: $isPaused
-            )
+            ).padding(.bottom, 20)
         }
     }
 }
