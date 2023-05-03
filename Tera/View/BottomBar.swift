@@ -33,8 +33,9 @@ struct BottomBar: View {
                         .frame(width: 30, height:30).foregroundColor(.accentColor)
                 }.confirmationDialog("Select Language", isPresented: $showingOptions, titleVisibility: .visible) {
                     ForEach(Language.allCases, id: \.self) { lang in
-                        Button(lang.rawValue == "en" ? "Bahasa Indonesia" : "English") {
+                        Button(lang.rawValue == "en" ? "en" : "id") {
                             selectionLanguage = lang.rawValue
+                            speechRecognizer.changeLanguage(identifier: lang.rawValue)
                         }
                     }
                 }
