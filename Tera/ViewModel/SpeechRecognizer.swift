@@ -43,6 +43,27 @@ class SpeechRecognizer: ObservableObject {
         task = nil
     }
     
+    /** Initialize Speech Framework from Apple SDK */
+    private func prepareRecognizer() {
+        recognizer = SFSpeechRecognizer(locale: Locale(identifier: self.language))!
+        
+        Task(priority: .background) {
+            do {
+                guard recognizer != nil else {
+                    throw RecognizerError.nilRecognizer
+                }
+                guard await SFSpeechRecognizer.hasAuthorizationToRecognize() else {
+                    throw RecognizerError.unauthorizedToRecognize
+                }
+                guard await AVAudioSession.sharedInstance().hasPermissionToRecord() else {
+                    throw RecognizerError.notPermittedRecord
+                }
+            } catch {
+                speakError(error)
+            }
+        }
+    }
+    
     /** Prepare engine to record */
     private static func prepareEngine() throws -> (AVAudioEngine, SFSpeechAudioBufferRecognitionRequest) {
         /**
@@ -105,25 +126,7 @@ class SpeechRecognizer: ObservableObject {
     init(language: String = "id") {
         
         self.language = language
-        
-        /** Initialize Speech Framework from Apple SDK */
-        recognizer = SFSpeechRecognizer(locale: Locale(identifier: self.language))!
-        
-        Task(priority: .background) {
-            do {
-                guard recognizer != nil else {
-                    throw RecognizerError.nilRecognizer
-                }
-                guard await SFSpeechRecognizer.hasAuthorizationToRecognize() else {
-                    throw RecognizerError.unauthorizedToRecognize
-                }
-                guard await AVAudioSession.sharedInstance().hasPermissionToRecord() else {
-                    throw RecognizerError.notPermittedRecord
-                }
-            } catch {
-                speakError(error)
-            }
-        }
+        self.prepareRecognizer()
     }
     
     
@@ -132,11 +135,15 @@ class SpeechRecognizer: ObservableObject {
         reset()
     }
     
+    /**
+        change language preference for speech framework.
+        changing the language means reset the speech recognizer and reinit again with selected language identifier
+     */
     func changeLanguage(identifier: String) {
         reset()
-        
+  
         self.language = identifier
-        recognizer = SFSpeechRecognizer(locale: Locale(identifier: self.language))!
+        self.prepareRecognizer()
     }
     
     /** Create a recognition task for the speech recognition session. */
