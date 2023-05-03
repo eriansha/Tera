@@ -24,13 +24,14 @@ struct BottomBar: View {
     }
     
     @Binding var isRecording: Bool
+    @Binding var isPaused: Bool
     @State private var showingOptions = false
-    @State private var selectionLanguage: String = "en"
+    @State private var selectionLanguage: String = "id"
     
     var body: some View {
             HStack{
                 
-                //Select Language Button
+                // Select Language Button
                 Button {
                     showingOptions = true
                 } label: {
@@ -45,17 +46,18 @@ struct BottomBar: View {
                             speechRecognizer.changeLanguage(identifier: lang.rawValue)
                         }
                     }
-                }.disabled(isRecording)
+                }.disabled(isRecording && !isPaused)
 
 
-                //Record Button
+                // Record Button
                 Button(action: {
-                    if isRecording {
-                        isRecording = false
+                    if isRecording && !isPaused {
+                        isPaused = true
                         speechRecognizer.stopTranscribing()
                         mic.stopMonitoring()
                     } else {
                         isRecording = true
+                        isPaused = false
                         speechRecognizer.transcribe()
                         mic.startMonitoring()
                     }
@@ -72,17 +74,19 @@ struct BottomBar: View {
                         
                         Rectangle()
                             .foregroundColor(.accentColor)
-                            .frame(width: isRecording ? 30 : 40, height: isRecording ? 30 : 40)
-                            .cornerRadius(isRecording ? 15 : 10)
-                            .animation(Animation.easeIn(duration: 0.5), value: isRecording)
+                            .frame(width: isRecording && !isPaused ? 30 : 40, height: isRecording && !isPaused ? 30 : 40)
+                            .cornerRadius(isRecording && !isPaused ? 15 : 10)
+                            .animation(Animation.easeIn(duration: 0.5), value: isRecording && !isPaused)
                             .padding(15)
   
                     }
                 }.padding(.horizontal,50)
                 
                 
-                //Reset Button
+                // Reset Button
                 Button {
+                    isRecording = false
+                    isPaused = false
                     speechRecognizer.transcript = ""
                 } label: {
                     Image(systemName: "arrow.counterclockwise")
@@ -90,7 +94,7 @@ struct BottomBar: View {
                                 .scaledToFit()
                                 .frame(width: 30, height:30).foregroundColor(.accentColor)
                 }
-                .disabled(isRecording)
+                .disabled(isRecording && !isPaused)
                 
             }
         }

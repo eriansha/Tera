@@ -9,8 +9,9 @@ import SwiftUI
 
 struct RecordingView: View {
     @StateObject var speechRecognizer = SpeechRecognizer()
-    @StateObject var mic = MicrophoneMonitor(numberOfSamples: 37)
+    @StateObject var microphoneMonitor = MicrophoneMonitor(numberOfSamples: 37)
     @State var isRecording: Bool = false
+    @State var isPaused: Bool = false
     @State var isTextViewerDimmed: Bool = true
     @State var isEmptyStateDimmed: Bool = false
     
@@ -45,13 +46,21 @@ struct RecordingView: View {
             
             Spacer()
         
-            SoundWaveView(mic: mic, isRecording: $isRecording)
-                .frame(height: 100)
-                .padding(.horizontal, 100)
+            SoundWaveView(
+                mic: microphoneMonitor,
+                isRecording: $isRecording
+            )
+            .frame(height: 100)
+            .padding(.horizontal, 100)
             
             Spacer()
             
-            BottomBar(mic: mic, speechRecognizer: speechRecognizer, isRecording: $isRecording)
+            BottomBar(
+                mic: microphoneMonitor,
+                speechRecognizer: speechRecognizer,
+                isRecording: $isRecording,
+                isPaused: $isPaused
+            )
         }
     }
 }
