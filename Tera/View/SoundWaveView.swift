@@ -64,7 +64,13 @@ struct BarView: View {
                 .animation(Animation.easeIn(duration: 0.05), value: value)
                 .frame(
                     width: (UIScreen.main.bounds.width - 34 - CGFloat(numberOfSamples) * 4) / CGFloat(numberOfSamples),
-                    height: CGFloat(value * ((30 + size * 20) / 20))
+                    /**
+                     make all the bar sound wave has the same height when no sound detected
+                     */
+                    height: (value == 0.1 ?
+                             CGFloat(value * ((30 + 1 * 20) / 20)) :
+                        CGFloat(value * ((30 + size * 20) / 20))
+                        )
                 )
         }
     }
