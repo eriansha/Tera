@@ -16,6 +16,8 @@
 		2C69E83329EE597200429ED2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C69E83229EE597200429ED2 /* Assets.xcassets */; };
 		2C69E83629EE597200429ED2 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C69E83529EE597200429ED2 /* Preview Assets.xcassets */; };
 		2C7BBD8529EFA1B20049497B /* ButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C7BBD8429EFA1B20049497B /* ButtonView.swift */; };
+		2CE1017A2A01F5950036AAF6 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = 2CE101792A01F5950036AAF6 /* Lottie */; };
+		2CE1017C2A01F5AD0036AAF6 /* LottieView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CE1017B2A01F5AD0036AAF6 /* LottieView.swift */; };
 		2CF8118829F62FB00015CDCC /* SpeechRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF8118729F62FB00015CDCC /* SpeechRecognizer.swift */; };
 		2CF8118B29F631990015CDCC /* hasAuthorizationToRecognize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF8118A29F631990015CDCC /* hasAuthorizationToRecognize.swift */; };
 		2CF8118D29F631C80015CDCC /* hasPermissionToRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF8118C29F631C80015CDCC /* hasPermissionToRecord.swift */; };
@@ -36,6 +38,7 @@
 		2C69E83229EE597200429ED2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2C69E83529EE597200429ED2 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		2C7BBD8429EFA1B20049497B /* ButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonView.swift; sourceTree = "<group>"; };
+		2CE1017B2A01F5AD0036AAF6 /* LottieView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LottieView.swift; sourceTree = "<group>"; };
 		2CF8118729F62FB00015CDCC /* SpeechRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeechRecognizer.swift; sourceTree = "<group>"; };
 		2CF8118A29F631990015CDCC /* hasAuthorizationToRecognize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hasAuthorizationToRecognize.swift; sourceTree = "<group>"; };
 		2CF8118C29F631C80015CDCC /* hasPermissionToRecord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = hasPermissionToRecord.swift; sourceTree = "<group>"; };
@@ -50,6 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CE1017A2A01F5950036AAF6 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,6 +127,7 @@
 				05A01D7329FA9C8500333C7F /* DummyWave.swift */,
 				05A01D7129FA9BAD00333C7F /* TextViewer.swift */,
 				9C754D1329FF72960003A01C /* SoundWaveView.swift */,
+				2CE1017B2A01F5AD0036AAF6 /* LottieView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -143,6 +148,9 @@
 			dependencies = (
 			);
 			name = Tera;
+			packageProductDependencies = (
+				2CE101792A01F5950036AAF6 /* Lottie */,
+			);
 			productName = Tera;
 			productReference = 2C69E82B29EE597100429ED2 /* Tera.app */;
 			productType = "com.apple.product-type.application";
@@ -171,6 +179,9 @@
 				Base,
 			);
 			mainGroup = 2C69E82229EE597100429ED2;
+			packageReferences = (
+				2CE101782A01F5940036AAF6 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+			);
 			productRefGroup = 2C69E82C29EE597100429ED2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -199,6 +210,7 @@
 			files = (
 				05A01D7229FA9BAD00333C7F /* TextViewer.swift in Sources */,
 				2C69E83129EE597100429ED2 /* ContentView.swift in Sources */,
+				2CE1017C2A01F5AD0036AAF6 /* LottieView.swift in Sources */,
 				2CF8118D29F631C80015CDCC /* hasPermissionToRecord.swift in Sources */,
 				05A01D6429FA42AD00333C7F /* BottomBar.swift in Sources */,
 				2CF8118829F62FB00015CDCC /* SpeechRecognizer.swift in Sources */,
@@ -417,6 +429,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		2CE101782A01F5940036AAF6 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		2CE101792A01F5950036AAF6 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 2CE101782A01F5940036AAF6 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 2C69E82329EE597100429ED2 /* Project object */;
 }
