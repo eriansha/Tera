@@ -17,7 +17,12 @@ struct SoundWaveView: View {
     
     // 2
     private func normalizeSoundLevel(level: Float) -> CGFloat {
-        let level = (max(16, CGFloat(level) + 50) / 2) - 7.9
+//        let level = (max(14, CGFloat(level) + 50) / 2) - 6.9
+        if level == 0 {
+            return CGFloat(0.1)
+        }
+        
+        let level = max(0.2, CGFloat(level) + 40) / 2 // 0.1 to 18
 
         return CGFloat(level)
     }
@@ -32,7 +37,7 @@ struct SoundWaveView: View {
                     }
                 } else {
                     ForEach(0..<sizeList.count, id: \.self) { id in
-                        BarView(value: 0.1, size: sizeList[id])
+                        BarView(value: 0.1, size: 1)
                     }
                 }
             }
@@ -54,8 +59,8 @@ struct BarView: View {
                 // 3
                 .animation(Animation.easeIn(duration: 0.05), value: value)
                 .frame(
-                    width: (UIScreen.main.bounds.width - CGFloat(numberOfSamples) * 4) / CGFloat(numberOfSamples),
-                    height: CGFloat(value * ((50 + size * 20) / 25))
+                    width: (UIScreen.main.bounds.width - 34 - CGFloat(numberOfSamples) * 4) / CGFloat(numberOfSamples),
+                    height: CGFloat(value * ((30 + size * 20) / 20))
                 )
         }
     }
