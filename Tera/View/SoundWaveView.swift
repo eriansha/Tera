@@ -17,7 +17,7 @@ struct SoundWaveView: View {
     
     // 2
     private func normalizeSoundLevel(level: Float) -> CGFloat {
-        let level = (max(30, CGFloat(level) + 50) / 2) - 14.9 
+        let level = (max(16, CGFloat(level) + 50) / 2) - 7.9
 
         return CGFloat(level)
     }
@@ -55,7 +55,7 @@ struct BarView: View {
                 .animation(Animation.easeIn(duration: 0.05), value: value)
                 .frame(
                     width: (UIScreen.main.bounds.width - CGFloat(numberOfSamples) * 4) / CGFloat(numberOfSamples),
-                    height: CGFloat(value * ((50 + size * 25) / 25))
+                    height: CGFloat(value * ((50 + size * 20) / 25))
                 )
         }
     }
