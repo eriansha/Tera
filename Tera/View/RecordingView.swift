@@ -11,16 +11,17 @@ struct RecordingView: View {
     @StateObject var speechRecognizer = SpeechRecognizer()
     @StateObject var mic = MicrophoneMonitor(numberOfSamples: 37)
     @State var isRecording: Bool = false
+    @State var prevTranscript: String = ""
     
     var body: some View {
         VStack {
-            TextViewer(speechRecognizer: speechRecognizer).padding()
+            TextViewer(speechRecognizer: speechRecognizer, prevTranscript: $prevTranscript).padding()
         
             SoundWaveView(mic: mic, isRecording: $isRecording)
                 .frame(height: 100)
                 .padding(.horizontal, 100)
             
-            BottomBar(mic: mic, speechRecognizer: speechRecognizer, isRecording: $isRecording)
+            BottomBar(mic: mic, speechRecognizer: speechRecognizer, isRecording: $isRecording, prevTranscript: $prevTranscript)
         }
     }
 }

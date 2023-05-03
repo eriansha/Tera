@@ -26,6 +26,7 @@ struct BottomBar: View {
     @Binding var isRecording: Bool
     @State private var showingOptions = false
     @State private var selectionLanguage: String = "en"
+    @Binding var prevTranscript: String
     
     var body: some View {
             HStack{
@@ -52,6 +53,7 @@ struct BottomBar: View {
                 Button(action: {
                     if isRecording {
                         isRecording = false
+                        prevTranscript += speechRecognizer.transcript
                         speechRecognizer.stopTranscribing()
                         mic.stopMonitoring()
                     } else {
@@ -82,6 +84,7 @@ struct BottomBar: View {
                 
                 //Reset Button
                 Button {
+                    prevTranscript = ""
                     speechRecognizer.transcript = ""
                     print("Reset!")
                 } label: {
