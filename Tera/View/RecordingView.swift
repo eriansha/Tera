@@ -20,6 +20,7 @@ struct RecordingView: View {
                 .frame(height: 100)
                 .padding(.horizontal, 100)
             
+            
             BottomBar(mic: mic, speechRecognizer: speechRecognizer, isRecording: $isRecording)
         }
     }

@@ -10,6 +10,7 @@ import SwiftUI
 struct TextViewer: View {
     @ObservedObject var speechRecognizer: SpeechRecognizer
     @State var showSheet = false
+    
     var body: some View {
         
         ZStack(alignment: .bottomTrailing) {
@@ -42,8 +43,9 @@ struct TextViewer: View {
                                 .font(.system(size: 24))
                                 .fontWeight(.bold)
                                 .padding(.horizontal,17)
-                                
-                        }.sheet(isPresented: $showSheet) {
+                        }
+                        //Fullscreen Modal
+                        .sheet(isPresented: $showSheet) {
                             VStack {
                                 HStack {
                                     Spacer()
@@ -59,7 +61,7 @@ struct TextViewer: View {
                                     .padding(.horizontal,25)
                                 }
                                 ScrollView {
-                                    Text(speechRecognizer.transcript)
+                                    Text("I’m currently at Apple Developer Academy learning how to become a world class developer by focusing our T-shape skills where we have different skill")
                                         .font(.system(size: 48))
                                         .frame(maxWidth: .infinity, alignment: .leading)
                                         .foregroundColor(.white)
