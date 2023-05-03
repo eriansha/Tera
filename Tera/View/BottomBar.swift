@@ -14,6 +14,13 @@ struct BottomBar: View {
     enum Language: String, CaseIterable {
         case id = "id"
         case en = "en"
+        
+        func getLabel() -> String {
+            switch(self) {
+            case .id: return "Indonesia"
+            case .en: return "English"
+            }
+        }
     }
     
     @Binding var isRecording: Bool
@@ -33,7 +40,7 @@ struct BottomBar: View {
                         .frame(width: 30, height:30).foregroundColor(.accentColor)
                 }.confirmationDialog("Select Language", isPresented: $showingOptions, titleVisibility: .visible) {
                     ForEach(Language.allCases, id: \.self) { lang in
-                        Button(lang.rawValue == "en" ? "en" : "id") {
+                        Button(lang.getLabel()) {
                             selectionLanguage = lang.rawValue
                             speechRecognizer.changeLanguage(identifier: lang.rawValue)
                         }
