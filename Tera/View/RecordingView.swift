@@ -55,12 +55,15 @@ struct RecordingView: View {
             
             Spacer()
             
+            Divider()
+                .padding(.horizontal, 16)
+            
             BottomBar(
                 mic: microphoneMonitor,
                 speechRecognizer: speechRecognizer,
                 isRecording: $isRecording,
                 isPaused: $isPaused
-            ).padding(.bottom, 20)
+            ).padding(.vertical, 30)
         }
     }
 }

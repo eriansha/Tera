@@ -35,10 +35,18 @@ struct BottomBar: View {
                 Button {
                     showingOptions = true
                 } label: {
-                    Image(systemName: "globe")
-                        .resizable()
-                        .scaledToFit()
-                        .frame(width: 30, height:30).foregroundColor(.accentColor)
+                    ZStack {
+                        Image(systemName: "globe")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(width: 30, height:30).foregroundColor(.accentColor)
+                        
+                        Text(selectionLanguage.uppercased())
+                            .foregroundColor(.accentColor)
+                            .font(.caption)
+                            .bold()
+                            .offset(x: 17, y: 17)
+                    }
                 }.confirmationDialog("Select language", isPresented: $showingOptions, titleVisibility: .visible) {
                     ForEach(Language.allCases, id: \.self) { lang in
                         Button(lang.getLabel()) {
@@ -74,10 +82,9 @@ struct BottomBar: View {
                         
                         Rectangle()
                             .foregroundColor(.accentColor)
-                            .frame(width: isRecording && !isPaused ? 30 : 40, height: isRecording && !isPaused ? 30 : 40)
-                            .cornerRadius(isRecording && !isPaused ? 15 : 10)
+                            .frame(width: isRecording && !isPaused ? 40 : 60, height: isRecording && !isPaused ? 40 : 60)
+                            .cornerRadius(isRecording && !isPaused ? 10 : 30)
                             .animation(Animation.easeIn(duration: 0.5), value: isRecording && !isPaused)
-                            .padding(15)
   
                     }
                 }.padding(.horizontal,50)
