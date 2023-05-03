@@ -11,14 +11,45 @@ struct RecordingView: View {
     @StateObject var speechRecognizer = SpeechRecognizer()
     @StateObject var mic = MicrophoneMonitor(numberOfSamples: 37)
     @State var isRecording: Bool = false
+    @State var isTextViewerDimmed: Bool = true
+    @State var isEmptyStateDimmed: Bool = false
     
     var body: some View {
         VStack {
-            TextViewer(speechRecognizer: speechRecognizer).padding()
+            Spacer()
+            
+            ZStack {
+                TextViewer(speechRecognizer: speechRecognizer)
+                    .padding()
+                    .opacity(isTextViewerDimmed ? 0 : 1)
+                    .scaleEffect(isTextViewerDimmed ? 0 : 1)
+                    .animation(Animation.linear(duration: 0.5), value: isTextViewerDimmed)
+                
+                
+                VStack {
+                    LottieView(url: "EmptyStateAnimation")
+                        .frame(width: 200, height: 200)
+                        .scaleEffect(isEmptyStateDimmed ? 1 : 2)
+                    
+                    Text("Start recording")
+                        .font(.body)
+                        .foregroundColor(.gray)
+                        .scaleEffect(isEmptyStateDimmed ? 0.1 : 1)
+                }
+                .opacity(isEmptyStateDimmed ? 0 : 1)
+                .animation(Animation.linear(duration: 0.5), value: isEmptyStateDimmed)
+            }.onChange(of: isRecording) { newState in
+                isTextViewerDimmed.toggle()
+                isEmptyStateDimmed.toggle()
+            }
+            
+            Spacer()
         
             SoundWaveView(mic: mic, isRecording: $isRecording)
                 .frame(height: 100)
                 .padding(.horizontal, 100)
+            
+            Spacer()
             
             BottomBar(mic: mic, speechRecognizer: speechRecognizer, isRecording: $isRecording)
         }
