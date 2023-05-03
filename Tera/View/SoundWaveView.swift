@@ -17,7 +17,11 @@ struct SoundWaveView: View {
     
     // 2
     private func normalizeSoundLevel(level: Float) -> CGFloat {
-//        let level = (max(14, CGFloat(level) + 50) / 2) - 6.9
+        
+        /**
+          guard the normalization to prevent auto scalling
+          at the first time active the microphone monitor
+         */
         if level == 0 {
             return CGFloat(0.1)
         }
