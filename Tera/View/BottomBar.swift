@@ -53,11 +53,11 @@ struct BottomBar: View {
                 Button(action: {
                     if isRecording {
                         isRecording = false
-                        prevTranscript += speechRecognizer.transcript
                         speechRecognizer.stopTranscribing()
                         mic.stopMonitoring()
                     } else {
                         isRecording = true
+                        prevTranscript += speechRecognizer.transcript
                         speechRecognizer.transcribe()
                         mic.startMonitoring()
                     }
