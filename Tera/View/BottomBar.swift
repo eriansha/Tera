@@ -37,7 +37,7 @@ struct BottomBar: View {
                             selectionLanguage = lang.rawValue
                         }
                     }
-                }
+                }.disabled(isRecording)
 
 
                 //Record Button
@@ -54,34 +54,45 @@ struct BottomBar: View {
                     
                 }) {
                     ZStack{
-                        if isRecording{
-                            RoundedRectangle(cornerRadius: 5).foregroundColor(.accentColor)
-                                .frame(width: 40, height: 40).padding(15)
-                        }else{
-                            Circle()
-                                .foregroundColor(.accentColor)
-                                .frame(width: 60, height: 60).padding(5)
-            
-                        }
-  
-                    }.overlay(
+//                        if isRecording{
+//                            RoundedRectangle(cornerRadius: 5).foregroundColor(.accentColor)
+//                                .frame(width: 40, height: 40).padding(15)
+//                        }else{
+//                            Circle()
+//                                .foregroundColor(.accentColor)
+//                                .frame(width: 60, height: 60).padding(5)
+//
+//                        }
+                        
                         Circle()
-                            .stroke(lineWidth: 2).foregroundColor(.accentColor)
-                            
-                    )
+                            .fill(.white)
+                            .frame(width: 70, height: 70)
+                            .overlay(
+                                  Circle()
+                                    .stroke(Color.accentColor, lineWidth: 1)
+                              )
+                        
+                        Rectangle()
+                            .foregroundColor(.accentColor)
+                            .frame(width: isRecording ? 30 : 40, height: isRecording ? 30 : 40)
+                            .cornerRadius(isRecording ? 15 : 0)
+                            .animation(Animation.easeIn(duration: 0.5), value: isRecording)
+                            .padding(15)
+  
+                    }
                 }.padding(.horizontal,50)
                 
                 
                 //Reset Button
                 Button {
                     speechRecognizer.transcript = ""
-                    print("Reset!")
                 } label: {
                     Image(systemName: "arrow.counterclockwise")
                         .resizable()
                                 .scaledToFit()
                                 .frame(width: 30, height:30).foregroundColor(.accentColor)
                 }
+                .disabled(isRecording)
                 
             }
         }
