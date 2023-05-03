@@ -31,7 +31,7 @@ class SpeechRecognizer: ObservableObject {
             errorMessage += error.localizedDescription
         }
         
-        self.transcript = "<< \(errorMessage) >>"
+        self.transcript = "..."
     }
     
     /** reset speech recognizer */
