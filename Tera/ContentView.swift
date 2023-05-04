@@ -12,22 +12,26 @@ struct ContentView: View {
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-        
-        ZStack{
+        ZStack {
             Color("BackgroundColor").ignoresSafeArea()
-            if isActive{
-                RecordingView()
-            }else{
-                SplashScreen(isDarkMode: colorScheme == .dark)
-                .onAppear {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                        withAnimation {
-                            self.isActive = true
-                        }
-                    }
-                }
-            }
+            RecordingView()
         }
+// TODO: remove splash screen
+//        ZStack{
+//            Color("BackgroundColor").ignoresSafeArea()
+//            if isActive{
+//                RecordingView()
+//            }else{
+//                SplashScreen(isDarkMode: colorScheme == .dark)
+//                .onAppear {
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+//                        withAnimation {
+//                            self.isActive = true
+//                        }
+//                    }
+//                }
+//            }
+//        }
         
     }
 }
