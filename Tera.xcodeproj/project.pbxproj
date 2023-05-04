@@ -7,9 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		052656B32A034BD700A31D36 /* FullscreenTextModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 052656B22A034BD700A31D36 /* FullscreenTextModal.swift */; };
 		05A01D6429FA42AD00333C7F /* BottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A01D6329FA42AD00333C7F /* BottomBar.swift */; };
 		05A01D7229FA9BAD00333C7F /* TextViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A01D7129FA9BAD00333C7F /* TextViewer.swift */; };
 		05A01DAC2A00AF8E00333C7F /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A01DAB2A00AF8E00333C7F /* Constant.swift */; };
+		05A01E282A0258DC00333C7F /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05A01E272A0258DC00333C7F /* SplashScreen.swift */; };
 		2C69E82F29EE597100429ED2 /* TeraApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C69E82E29EE597100429ED2 /* TeraApp.swift */; };
 		2C69E83129EE597100429ED2 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2C69E83029EE597100429ED2 /* ContentView.swift */; };
 		2C69E83329EE597200429ED2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2C69E83229EE597200429ED2 /* Assets.xcassets */; };
@@ -27,9 +29,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		052656B22A034BD700A31D36 /* FullscreenTextModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FullscreenTextModal.swift; sourceTree = "<group>"; };
 		05A01D6329FA42AD00333C7F /* BottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomBar.swift; sourceTree = "<group>"; };
 		05A01D7129FA9BAD00333C7F /* TextViewer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextViewer.swift; sourceTree = "<group>"; };
 		05A01DAB2A00AF8E00333C7F /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
+		05A01E272A0258DC00333C7F /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		2C69E82B29EE597100429ED2 /* Tera.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tera.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C69E82E29EE597100429ED2 /* TeraApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeraApp.swift; sourceTree = "<group>"; };
 		2C69E83029EE597100429ED2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -121,8 +125,10 @@
 			isa = PBXGroup;
 			children = (
 				2CF8119129F63F180015CDCC /* RecordingView.swift */,
+				05A01E272A0258DC00333C7F /* SplashScreen.swift */,
 				05A01D6329FA42AD00333C7F /* BottomBar.swift */,
 				05A01D7129FA9BAD00333C7F /* TextViewer.swift */,
+				052656B22A034BD700A31D36 /* FullscreenTextModal.swift */,
 				9C754D1329FF72960003A01C /* SoundWaveView.swift */,
 				2CE1017B2A01F5AD0036AAF6 /* LottieView.swift */,
 			);
@@ -205,6 +211,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05A01E282A0258DC00333C7F /* SplashScreen.swift in Sources */,
 				05A01D7229FA9BAD00333C7F /* TextViewer.swift in Sources */,
 				2C69E83129EE597100429ED2 /* ContentView.swift in Sources */,
 				2CE1017C2A01F5AD0036AAF6 /* LottieView.swift in Sources */,
@@ -213,6 +220,7 @@
 				2CF8118829F62FB00015CDCC /* SpeechRecognizer.swift in Sources */,
 				2C7BBD8529EFA1B20049497B /* ButtonView.swift in Sources */,
 				2C69E82F29EE597100429ED2 /* TeraApp.swift in Sources */,
+				052656B32A034BD700A31D36 /* FullscreenTextModal.swift in Sources */,
 				2CF8118F29F634970015CDCC /* RecognizerError.swift in Sources */,
 				2CF8119229F63F180015CDCC /* RecordingView.swift in Sources */,
 				9C754D1429FF72960003A01C /* SoundWaveView.swift in Sources */,
@@ -348,7 +356,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Tera/Preview Content\"";
-				DEVELOPMENT_TEAM = KGMG9ZB867;
+				DEVELOPMENT_TEAM = 45ZWLX2CYQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Audio is recorded to transcribe the conversation.";
@@ -358,13 +366,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.microchallange-1.Tera";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.microchallang-1.Tera";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -382,7 +390,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Tera/Preview Content\"";
-				DEVELOPMENT_TEAM = J76B5263UU;
+				DEVELOPMENT_TEAM = 45ZWLX2CYQ;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Audio is recorded to transcribe the conversation.";
@@ -392,13 +400,13 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.microchallange-1.Tera";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.microchallang-1.Tera";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

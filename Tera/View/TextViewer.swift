@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TextViewer: View {
     @ObservedObject var speechRecognizer: SpeechRecognizer
+    @State var showSheet = false
     @Binding var prevTranscript: String
     
     var body: some View {
@@ -21,15 +22,13 @@ struct TextViewer: View {
                     .aspectRatio(contentMode: .fill)
                 
                 VStack {
-                    ScrollView{
-                        
-                            Text(prevTranscript + " " + speechRecognizer.transcript)
+                    ScrollView {
+                        Text(prevTranscript + " " + speechRecognizer.transcript)
                             .font(.system(size: 36))
                             .fontWeight(.regular)
                             .foregroundColor(.white)
                             .padding(.horizontal, 25)
                             .frame(maxWidth: .infinity, alignment: .leading)
-                        
                     }
                     .frame(height: 370)
                     
@@ -37,7 +36,7 @@ struct TextViewer: View {
                         Spacer()
                         
                         Button(action: {
-                            
+                            showSheet = true
                         }) {
                             Image(systemName: "viewfinder")
                                 .frame(width: 30, height: 29)
@@ -45,7 +44,10 @@ struct TextViewer: View {
                                 .font(.system(size: 24))
                                 .fontWeight(.bold)
                                 .padding(.horizontal,17)
-                                
+                        }
+                        //Fullscreen Modal
+                        .sheet(isPresented: $showSheet) {
+                            FullscreenTextModal(showSheet: $showSheet, speechRecognizer: speechRecognizer)
                         }
                     }.padding(.bottom, -20)
                     
@@ -58,6 +60,8 @@ struct TextViewer: View {
                 color: Color.black.opacity(0.2),
                 radius: 10
             )
+        }.onAppear {
+            UIScrollView.appearance().indicatorStyle = .white
         }
     }
 }

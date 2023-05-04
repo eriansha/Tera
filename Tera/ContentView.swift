@@ -8,8 +8,27 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var isActive: Bool = false
+    @Environment(\.colorScheme) var colorScheme
+    
     var body: some View {
-        RecordingView().preferredColorScheme(.light)
+        
+        ZStack{
+            Color("BackgroundColor").ignoresSafeArea()
+            if isActive{
+                RecordingView()
+            }else{
+                SplashScreen(isDarkMode: colorScheme == .dark)
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        withAnimation {
+                            self.isActive = true
+                        }
+                    }
+                }
+            }
+        }
+        
     }
 }
 
