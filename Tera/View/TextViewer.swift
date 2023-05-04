@@ -23,7 +23,11 @@ struct TextViewer: View {
                 
                 VStack {
                     ScrollView {
-                        Text(prevTranscript + " " + speechRecognizer.transcript)
+                        Text(
+                            prevTranscript.isEmpty
+                                ? speechRecognizer.transcript
+                                : prevTranscript + " " + speechRecognizer.transcript
+                        )
                             .font(.system(size: 36))
                             .fontWeight(.regular)
                             .foregroundColor(.white)
