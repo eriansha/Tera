@@ -24,78 +24,86 @@ struct BottomBar: View {
     }
     
     @Binding var isRecording: Bool
+    @Binding var isPaused: Bool
     @State private var showingOptions = false
-    @State private var selectionLanguage: String = "en"
+    @State private var selectionLanguage: String = "id"
     @Binding var prevTranscript: String
     
     var body: some View {
-            HStack{
-                
-                //Select Language Button
-                Button {
-                    showingOptions = true
-                } label: {
+        HStack{
+            //Select Language Button
+            Button {
+                showingOptions = true
+            } label: {
+                ZStack {
                     Image(systemName: "globe")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 30, height:30).foregroundColor(.accentColor)
-                }.confirmationDialog("Select Language", isPresented: $showingOptions, titleVisibility: .visible) {
-                    ForEach(Language.allCases, id: \.self) { lang in
-                        Button(lang.getLabel()) {
-                            selectionLanguage = lang.rawValue
-                            speechRecognizer.changeLanguage(identifier: lang.rawValue)
-                        }
-                    }
-                }
-
-
-                //Record Button
-                Button(action: {
-                    if isRecording {
-                        isRecording = false
-                        speechRecognizer.stopTranscribing()
-                        mic.stopMonitoring()
-                    } else {
-                        isRecording = true
-                        prevTranscript += speechRecognizer.transcript
-                        speechRecognizer.transcribe()
-                        mic.startMonitoring()
-                    }
                     
-                }) {
-                    ZStack{
-                        if isRecording{
-                            RoundedRectangle(cornerRadius: 5).foregroundColor(.accentColor)
-                                .frame(width: 40, height: 40).padding(15)
-                        }else{
-                            Circle()
-                                .foregroundColor(.accentColor)
-                                .frame(width: 60, height: 60).padding(5)
-            
-                        }
-  
-                    }.overlay(
-                        Circle()
-                            .stroke(lineWidth: 2).foregroundColor(.accentColor)
-                            
-                    )
-                }.padding(.horizontal,50)
-                
-                
-                //Reset Button
-                Button {
-                    prevTranscript = ""
-                    speechRecognizer.transcript = ""
-                    print("Reset!")
-                } label: {
-                    Image(systemName: "arrow.counterclockwise")
-                        .resizable()
-                                .scaledToFit()
-                                .frame(width: 30, height:30).foregroundColor(.accentColor)
+                    Text(selectionLanguage.uppercased())
+                        .foregroundColor(.accentColor)
+                        .font(.caption)
+                        .bold()
+                        .offset(x: 17, y: 17)
+                }
+            }.confirmationDialog("Select Language", isPresented: $showingOptions, titleVisibility: .visible) {
+                ForEach(Language.allCases, id: \.self) { lang in
+                    Button(lang.getLabel()) {
+                        selectionLanguage = lang.rawValue
+                        speechRecognizer.changeLanguage(identifier: lang.rawValue)
+                    }
+                }
+            }.disabled(isRecording && !isPaused)
+
+            // Record Button
+            Button(action: {
+                if isRecording && !isPaused {
+                    isPaused = true
+                    speechRecognizer.stopTranscribing()
+                    mic.stopMonitoring()
+                } else {
+                    isRecording = true
+                    isPaused = false
+                    speechRecognizer.transcribe()
+                    mic.startMonitoring()
+                    prevTranscript += speechRecognizer.transcript
                 }
                 
+            }) {
+                ZStack{
+                    Circle()
+                        .fill(.white)
+                        .frame(width: 70, height: 70)
+                        .overlay(
+                            Circle()
+                                .stroke(Color.accentColor, lineWidth: 1)
+                        )
+                    
+                    Rectangle()
+                        .foregroundColor(.accentColor)
+                        .frame(width: isRecording && !isPaused ? 40 : 60, height: isRecording && !isPaused ? 40 : 60)
+                        .cornerRadius(isRecording && !isPaused ? 10 : 30)
+                        .animation(Animation.easeIn(duration: 0.2), value: isRecording && !isPaused)
+                    
+                }
+            }.padding(.horizontal,50)
+            
+            // Reset Button
+            Button {
+                isRecording = false
+                isPaused = false
+                prevTranscript = ""
+                speechRecognizer.transcript = ""
+            } label: {
+                Image(systemName: "arrow.counterclockwise")
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 30, height:30).foregroundColor(.accentColor)
             }
+            .disabled(isRecording && !isPaused)
         }
+    }
 }
 
 //struct BottomBar_Previews: PreviewProvider {
@@ -103,4 +111,3 @@ struct BottomBar: View {
 //        BottomBar()
 //    }
 //}
-
