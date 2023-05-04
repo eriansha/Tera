@@ -67,7 +67,11 @@ struct BottomBar: View {
                     isPaused = false
                     speechRecognizer.transcribe()
                     mic.startMonitoring()
-                    prevTranscript += speechRecognizer.transcript
+                    if prevTranscript.isEmpty {
+                        prevTranscript += speechRecognizer.transcript
+                    } else {
+                        prevTranscript += " " + speechRecognizer.transcript
+                    }
                 }
                 
             }) {
