@@ -9,19 +9,68 @@ import SwiftUI
 
 struct RecordingView: View {
     @StateObject var speechRecognizer = SpeechRecognizer()
-    @StateObject var mic = MicrophoneMonitor(numberOfSamples: 37)
+    @StateObject var microphoneMonitor = MicrophoneMonitor(numberOfSamples: 37)
     @State var isRecording: Bool = false
+    @State var prevTranscript: String = ""
+    @State var isPaused: Bool = false
+    @State var isTextViewerDimmed: Bool = true
+    @State var isEmptyStateDimmed: Bool = false
+    
+    let animateDuration: CGFloat = 0.2
     
     var body: some View {
         VStack {
-            TextViewer(speechRecognizer: speechRecognizer).padding()
-        
-            SoundWaveView(mic: mic, isRecording: $isRecording)
+            Spacer()
+            
+            ZStack {
+                TextViewer(
+                    speechRecognizer: speechRecognizer,
+                    prevTranscript: $prevTranscript
+                )
+                .padding()
+                .opacity(isTextViewerDimmed ? 0 : 1)
+                .scaleEffect(isTextViewerDimmed ? 0 : 1)
+                .animation(Animation.linear(duration: animateDuration), value: isTextViewerDimmed)
+                
+                
+                VStack {
+                    LottieView(url: "EmptyStateAnimation")
+                        .frame(width: 200, height: 200)
+                        .scaleEffect(isEmptyStateDimmed ? 1 : 2)
+                    
+                    Text("Start recording")
+                        .font(.body)
+                        .foregroundColor(.gray)
+                        .scaleEffect(isEmptyStateDimmed ? 0.1 : 1)
+                }
+                .opacity(isEmptyStateDimmed ? 0 : 1)
+                .animation(Animation.linear(duration: animateDuration), value: isEmptyStateDimmed)
+            }.onChange(of: isRecording) { newState in
+                isTextViewerDimmed.toggle()
+                isEmptyStateDimmed.toggle()
+            }
+            
+            if isRecording {
+                SoundWaveView(
+                    mic: microphoneMonitor,
+                    isRecording: $isRecording
+                )
                 .frame(height: 100)
                 .padding(.horizontal, 100)
+            }
             
+            Spacer()
             
-            BottomBar(mic: mic, speechRecognizer: speechRecognizer, isRecording: $isRecording)
+            Divider()
+                .padding(.horizontal, 16)
+            
+            BottomBar(
+                mic: microphoneMonitor,
+                speechRecognizer: speechRecognizer,
+                isRecording: $isRecording,
+                isPaused: $isPaused,
+                prevTranscript: $prevTranscript
+            ).padding(.vertical, 30)
         }
     }
 }

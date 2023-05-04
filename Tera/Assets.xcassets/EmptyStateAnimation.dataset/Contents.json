@@ -1,0 +1,12 @@
+{
+  "data" : [
+    {
+      "filename" : "EmptyStateAnimation.json",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -10,6 +10,7 @@ import SwiftUI
 struct TextViewer: View {
     @ObservedObject var speechRecognizer: SpeechRecognizer
     @State var showSheet = false
+    @Binding var prevTranscript: String
     
     var body: some View {
         
@@ -21,8 +22,8 @@ struct TextViewer: View {
                     .aspectRatio(contentMode: .fill)
                 
                 VStack {
-                    ScrollView{
-                            Text(speechRecognizer.transcript)
+                    ScrollView {
+                        Text(prevTranscript + " " + speechRecognizer.transcript)
                             .font(.system(size: 36))
                             .fontWeight(.regular)
                             .foregroundColor(.white)
@@ -67,6 +68,6 @@ struct TextViewer: View {
 
 struct TextViewer_Previews: PreviewProvider {
     static var previews: some View {
-        TextViewer(speechRecognizer: SpeechRecognizer())
+        TextViewer(speechRecognizer: SpeechRecognizer(), prevTranscript: .constant("Test"))
     }
 }
