@@ -26,7 +26,7 @@ struct SoundWaveView: View {
             return CGFloat(0.1)
         }
         
-        let level = max(0.2, CGFloat(level) + 40) / 2 // 0.1 to 18
+        let level = max(0.2, CGFloat(level) + 40) / 2 // 0.1 to 20
 
         return CGFloat(level)
     }
@@ -41,7 +41,7 @@ struct SoundWaveView: View {
                     }
                 } else {
                     ForEach(0..<sizeList.count, id: \.self) { id in
-                        BarView(value: 0.1, size: 1)
+                        BarView(value: 0.1, size: 4)
                     }
                 }
             }
@@ -68,8 +68,8 @@ struct BarView: View {
                      make all the bar sound wave has the same height when no sound detected
                      */
                     height: (value == 0.1 ?
-                             CGFloat(value * ((30 + 1 * 20) / 20)) :
-                        CGFloat(value * ((30 + size * 20) / 20))
+                             CGFloat(value * ((25 + 1 * 15) / 20)) :
+                        CGFloat(value * ((25 + size * 15) / 20))
                         )
                 )
         }
