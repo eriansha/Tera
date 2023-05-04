@@ -46,34 +46,7 @@ struct TextViewer: View {
                         }
                         //Fullscreen Modal
                         .sheet(isPresented: $showSheet) {
-                            VStack {
-                                HStack {
-                                    Spacer()
-                                    Button(action: {
-                                        showSheet = false
-                                    }, label: {
-                                        Image(systemName: "xmark")
-                                            .font(.system(size: 24))
-                                            .foregroundColor(.white)
-                                    })
-                                    .padding(.top,30)
-                                    .padding(.bottom,5)
-                                    .padding(.horizontal,25)
-                                }
-                                ScrollView {
-                                    Text("I’m currently at Apple Developer Academy learning how to become a world class developer by focusing our T-shape skills where we have different skill")
-                                        .font(.system(size: 48))
-                                        .frame(maxWidth: .infinity, alignment: .leading)
-                                        .foregroundColor(.white)
-                                        .padding(.horizontal,30)
-                                        .presentationCornerRadius(29)
-                                        .presentationBackground {
-                                            Image("FullscreenBG")
-                                        }
-                                }
-                                .frame(height: 670)
-                            }
-                            
+                            FullscreenTextModal(showSheet: $showSheet, speechRecognizer: speechRecognizer)
                         }
                     }.padding(.bottom, -20)
                     

@@ -7,32 +7,21 @@
 
 import SwiftUI
 
-struct SplashScreenView: View {
-    @State var isActive: Bool = false
+struct SplashScreen: View {
     
     var body: some View {
         
-        if isActive{
-            RecordingView()
-        }else{
-            ZStack {
-                Image(systemName: "ear.and.waveform")
-                    .foregroundColor(.accentColor)
-                    .font(.system(size: 80))
-            }
-            .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    withAnimation {
-                        self.isActive = true
-                    }
-                }
-            }
+        ZStack {
+            Image(systemName: "ear.and.waveform")
+                .foregroundColor(.accentColor)
+                .font(.system(size: 80))
         }
+        
     }
 }
 
 struct SplashScreen_Previews: PreviewProvider {
     static var previews: some View {
-        SplashScreenView()
+        SplashScreen()
     }
 }

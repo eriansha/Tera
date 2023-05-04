@@ -8,9 +8,22 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State var isActive: Bool = false
+    
     var body: some View {
-        SplashScreenView()
-//        RecordingView().preferredColorScheme(.light)
+        
+        if isActive{
+            RecordingView()
+        }else{
+            SplashScreen()
+            .onAppear {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                    withAnimation {
+                        self.isActive = true
+                    }
+                }
+            }
+        }
     }
 }
 
