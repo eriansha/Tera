@@ -9,21 +9,26 @@ import SwiftUI
 
 struct ContentView: View {
     @State var isActive: Bool = false
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
         
-        if isActive{
-            RecordingView()
-        }else{
-            SplashScreen()
-            .onAppear {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                    withAnimation {
-                        self.isActive = true
+        ZStack{
+            Color("BackgroundColor").ignoresSafeArea()
+            if isActive{
+                RecordingView()
+            }else{
+                SplashScreen(bgName: (colorScheme == .dark ? "SplashBGDark" : "SplashBGLight"))
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        withAnimation {
+                            self.isActive = true
+                        }
                     }
                 }
             }
         }
+        
     }
 }
 
