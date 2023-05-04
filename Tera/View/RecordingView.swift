@@ -16,6 +16,8 @@ struct RecordingView: View {
     @State var isTextViewerDimmed: Bool = true
     @State var isEmptyStateDimmed: Bool = false
     
+    let animateDuration: CGFloat = 0.2
+    
     var body: some View {
         VStack {
             Spacer()
@@ -28,7 +30,7 @@ struct RecordingView: View {
                 .padding()
                 .opacity(isTextViewerDimmed ? 0 : 1)
                 .scaleEffect(isTextViewerDimmed ? 0 : 1)
-                .animation(Animation.linear(duration: 0.5), value: isTextViewerDimmed)
+                .animation(Animation.linear(duration: animateDuration), value: isTextViewerDimmed)
                 
                 
                 VStack {
@@ -42,17 +44,20 @@ struct RecordingView: View {
                         .scaleEffect(isEmptyStateDimmed ? 0.1 : 1)
                 }
                 .opacity(isEmptyStateDimmed ? 0 : 1)
-                .animation(Animation.linear(duration: 0.5), value: isEmptyStateDimmed)
+                .animation(Animation.linear(duration: animateDuration), value: isEmptyStateDimmed)
             }.onChange(of: isRecording) { newState in
                 isTextViewerDimmed.toggle()
                 isEmptyStateDimmed.toggle()
             }
-            SoundWaveView(
-                mic: microphoneMonitor,
-                isRecording: $isRecording
-            )
-            .frame(height: 100)
-            .padding(.horizontal, 100)
+            
+            if isRecording {
+                SoundWaveView(
+                    mic: microphoneMonitor,
+                    isRecording: $isRecording
+                )
+                .frame(height: 100)
+                .padding(.horizontal, 100)
+            }
             
             Spacer()
             
@@ -64,7 +69,7 @@ struct RecordingView: View {
                 speechRecognizer: speechRecognizer,
                 isRecording: $isRecording,
                 isPaused: $isPaused,
-                prevTranscript: prevTranscript
+                prevTranscript: $prevTranscript
             ).padding(.vertical, 30)
         }
     }
