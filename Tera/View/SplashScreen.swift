@@ -8,12 +8,14 @@
 import SwiftUI
 
 struct SplashScreen: View {
-    var bgName: String
+    var isDarkMode: Bool = false
     
     var body: some View {
         
         ZStack{
-            Image(bgName).resizable().ignoresSafeArea(.all)
+            Image(isDarkMode ? "SplashBGDark" : "SplashBGLight")
+                .resizable()
+                .ignoresSafeArea(.all)
             ZStack {
                 Image("SplashLogo")
                     .resizable()
@@ -26,8 +28,8 @@ struct SplashScreen: View {
     }
 }
 
-//struct SplashScreen_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SplashScreen()
-//    }
-//}
+struct SplashScreen_Previews: PreviewProvider {
+    static var previews: some View {
+        SplashScreen(isDarkMode: true)
+    }
+}

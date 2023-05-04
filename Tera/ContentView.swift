@@ -18,7 +18,7 @@ struct ContentView: View {
             if isActive{
                 RecordingView()
             }else{
-                SplashScreen(bgName: (colorScheme == .dark ? "SplashBGDark" : "SplashBGLight"))
+                SplashScreen(isDarkMode: colorScheme == .dark)
                 .onAppear {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                         withAnimation {
