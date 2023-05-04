@@ -11,6 +11,7 @@ struct RecordingView: View {
     @StateObject var speechRecognizer = SpeechRecognizer()
     @StateObject var microphoneMonitor = MicrophoneMonitor(numberOfSamples: 37)
     @State var isRecording: Bool = false
+    @State var prevTranscript: String = ""
     @State var isPaused: Bool = false
     @State var isTextViewerDimmed: Bool = true
     @State var isEmptyStateDimmed: Bool = false
@@ -20,11 +21,14 @@ struct RecordingView: View {
             Spacer()
             
             ZStack {
-                TextViewer(speechRecognizer: speechRecognizer)
-                    .padding()
-                    .opacity(isTextViewerDimmed ? 0 : 1)
-                    .scaleEffect(isTextViewerDimmed ? 0 : 1)
-                    .animation(Animation.linear(duration: 0.5), value: isTextViewerDimmed)
+                TextViewer(
+                    speechRecognizer: speechRecognizer,
+                    prevTranscript: $prevTranscript
+                )
+                .padding()
+                .opacity(isTextViewerDimmed ? 0 : 1)
+                .scaleEffect(isTextViewerDimmed ? 0 : 1)
+                .animation(Animation.linear(duration: 0.5), value: isTextViewerDimmed)
                 
                 
                 VStack {
@@ -43,9 +47,6 @@ struct RecordingView: View {
                 isTextViewerDimmed.toggle()
                 isEmptyStateDimmed.toggle()
             }
-            
-            Spacer()
-        
             SoundWaveView(
                 mic: microphoneMonitor,
                 isRecording: $isRecording
@@ -62,7 +63,8 @@ struct RecordingView: View {
                 mic: microphoneMonitor,
                 speechRecognizer: speechRecognizer,
                 isRecording: $isRecording,
-                isPaused: $isPaused
+                isPaused: $isPaused,
+                prevTranscript: prevTranscript
             ).padding(.vertical, 30)
         }
     }

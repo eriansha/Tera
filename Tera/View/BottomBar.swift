@@ -27,10 +27,11 @@ struct BottomBar: View {
     @Binding var isPaused: Bool
     @State private var showingOptions = false
     @State private var selectionLanguage: String = "id"
+    @Binding var prevTranscript: String
     
     var body: some View {
             HStack{
-                
+
                 // Select Language Button
                 Button {
                     showingOptions = true
@@ -48,7 +49,6 @@ struct BottomBar: View {
                             .offset(x: 17, y: 17)
                     }
                 }.confirmationDialog("Select language", isPresented: $showingOptions, titleVisibility: .visible) {
-                    ForEach(Language.allCases, id: \.self) { lang in
                         Button(lang.getLabel()) {
                             selectionLanguage = lang.rawValue
                             speechRecognizer.changeLanguage(identifier: lang.rawValue)
@@ -68,6 +68,7 @@ struct BottomBar: View {
                         isPaused = false
                         speechRecognizer.transcribe()
                         mic.startMonitoring()
+                        prevTranscript += speechRecognizer.transcript
                     }
                     
                 }) {
@@ -94,6 +95,7 @@ struct BottomBar: View {
                 Button {
                     isRecording = false
                     isPaused = false
+                    prevTranscript = ""
                     speechRecognizer.transcript = ""
                 } label: {
                     Image(systemName: "arrow.counterclockwise")
