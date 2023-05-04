@@ -19,7 +19,7 @@ struct RecordingView: View {
         
             SoundWaveView(mic: mic, isRecording: $isRecording)
                 .frame(height: 100)
-                .padding(.horizontal, 100)
+                .padding(.bottom, 10)
             
             BottomBar(mic: mic, speechRecognizer: speechRecognizer, isRecording: $isRecording, prevTranscript: $prevTranscript)
         }
