@@ -28,11 +28,11 @@ struct TextViewer: View {
                                 ? speechRecognizer.transcript
                                 : prevTranscript + " " + speechRecognizer.transcript
                         )
-                            .font(.system(size: 36))
-                            .fontWeight(.regular)
-                            .foregroundColor(.white)
-                            .padding(.horizontal, 25)
-                            .frame(maxWidth: .infinity, alignment: .leading)
+                        .font(.system(size: 36))
+                        .fontWeight(.regular)
+                        .foregroundColor(.white)
+                        .padding(.horizontal, 25)
+                        .frame(maxWidth: .infinity, alignment: .leading)
                     }
                     .frame(height: 370)
                     
@@ -51,7 +51,7 @@ struct TextViewer: View {
                         }
                         //Fullscreen Modal
                         .sheet(isPresented: $showSheet) {
-                            FullscreenTextModal(showSheet: $showSheet, speechRecognizer: speechRecognizer)
+                            FullscreenTextModal(showSheet: $showSheet, speechRecognizer: speechRecognizer, prevTranscript: $prevTranscript)
                         }
                     }.padding(.bottom, -20)
                     
