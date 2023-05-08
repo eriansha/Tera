@@ -11,6 +11,7 @@ struct FullscreenTextModal: View {
     
     @Binding var showSheet: Bool
     @ObservedObject var speechRecognizer: SpeechRecognizer
+    @Binding var prevTranscript: String
     
     var body: some View {
         VStack {
@@ -28,15 +29,19 @@ struct FullscreenTextModal: View {
                 .padding(.horizontal,25)
             }
             ScrollView {
-                Text(speechRecognizer.transcript)
-                    .font(.system(size: 48))
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .foregroundColor(.white)
-                    .padding(.horizontal,30)
-                    .presentationCornerRadius(29)
-                    .presentationBackground {
-                        Image("FullscreenBG")
-                    }
+                Text(
+                    prevTranscript.isEmpty
+                        ? speechRecognizer.transcript
+                        : prevTranscript + " " + speechRecognizer.transcript
+                )
+                .font(.system(size: 48))
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .foregroundColor(.white)
+                .padding(.horizontal,30)
+                .presentationCornerRadius(29)
+                .presentationBackground {
+                    Image("FullscreenBG")
+                }
             }
             .frame(height: 670)
         }

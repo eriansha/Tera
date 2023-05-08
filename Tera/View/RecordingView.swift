@@ -38,10 +38,13 @@ struct RecordingView: View {
                         .frame(width: 200, height: 200)
                         .scaleEffect(isEmptyStateDimmed ? 1 : 2)
                     
-                    Text("Start recording")
+                    Text("For better accuracy, bring the phone closer to the audio source.")
+                        .multilineTextAlignment(.center)
                         .font(.body)
                         .foregroundColor(.gray)
                         .scaleEffect(isEmptyStateDimmed ? 0.1 : 1)
+                        .padding(.top, 25)
+                        .padding(.horizontal, 40)
                 }
                 .opacity(isEmptyStateDimmed ? 0 : 1)
                 .animation(Animation.linear(duration: animateDuration), value: isEmptyStateDimmed)
@@ -55,8 +58,8 @@ struct RecordingView: View {
                     mic: microphoneMonitor,
                     isRecording: $isRecording
                 )
-                .frame(height: 100)
-                .padding(.horizontal, 100)
+                .frame(maxHeight: 100)
+//                .padding(.horizontal, 100)
             }
             
             Spacer()
